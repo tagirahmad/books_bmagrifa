@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       actionsIconTheme:
           IconThemeData(size: 30.0, color: Colors.black, opacity: 10.0),
-      actions: [IconButton(icon: Icon(Icons.menu), onPressed: () {})],
+      // actions: [IconButton(icon: Icon(Icons.menu), onPressed: () {})],
       title: Align(
           alignment: Alignment.centerLeft,
           child: Column(

@@ -11,35 +11,21 @@ class BookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: InkWell(
+    Size size = MediaQuery.of(context).size;
+    return InkWell(
         onTap: onTap,
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 4,
-                child: CachedNetworkImage(
-                  imageUrl: coverImage,
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              Expanded(
-                  flex: 5,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: SizedBox(
-                      child: Text(title, textAlign: TextAlign.center),
-                    ),
-                  ))
-            ],
-          ),
-        ),
-      ),
-    );
+        // child: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: CachedNetworkImage(
+        //     imageUrl: coverImage,
+        //     fit: BoxFit.fitHeight,
+        //   ),
+        // ),
+        child: CachedNetworkImage(
+          imageUrl: coverImage,
+          // width: size.width * 0.5,
+          fit: BoxFit.fitHeight,
+        ));
     // return SizedBox(
     //   // width: 500,
     //   height: 700,

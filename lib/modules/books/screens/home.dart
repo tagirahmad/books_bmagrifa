@@ -3,7 +3,7 @@ import 'package:bmagrifa_books/modules/books/models/book.dart';
 import 'package:bmagrifa_books/modules/books/screens/book_info.dart';
 import 'package:bmagrifa_books/widgets/custom_appbar.dart';
 import 'package:bmagrifa_books/widgets/book_card.dart';
-import 'package:bmagrifa_books/widgets/search.dart';
+import 'package:bmagrifa_books/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 List<Book> books = [
@@ -12,13 +12,13 @@ List<Book> books = [
       description: "Long description of the book 1",
       author: Author(name: "Ibn Kathir", id: 1),
       coverImage:
-          'https://rukitab.com/wa-data/public/shop/products/59/00/59/images/67/67.200.png'),
+          'https://static.vecteezy.com/system/resources/previews/001/200/145/original/books-png.png'),
   Book(
       title: "Религиозные новшества",
       description: "Long description of the book 2",
       author: Author(name: "Ibn Kudama", id: 2),
       coverImage:
-          'https://rukitab.com/wa-data/public/shop/products/59/00/59/images/67/67.200.png'),
+          'https://images.squarespace-cdn.com/content/v1/54d262dde4b02fc9b49ecf9c/1522975869432-RRNG4FPX0LCJD205NT88/ke17ZwdGBToddI8pDm48kEuv4Y4t3q1rAAZ3bBSUazl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1US9-0cW5aPUUMJ-3sw1AVU3jPrGIyYMQT1mVx6iI98dTG6v6ULRah83RgHXAWD5lbQ/Atthegoingdownofthesun_mockup.png'),
   Book(
       title: "Обряды похорон",
       description: "Long description of the book 3 ",
@@ -121,12 +121,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: CustomAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
         child: Column(
           children: [
-            Search(),
+            SearchBar(),
             SizedBox(
               height: 20,
             ),
