@@ -134,7 +134,7 @@ class Home extends StatelessWidget {
             GridView.count(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 children: books.map((Book book) {
                   return BookCard(
                       title: book.title,
