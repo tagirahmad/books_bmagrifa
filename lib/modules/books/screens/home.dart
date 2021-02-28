@@ -1,6 +1,8 @@
 import 'package:bmagrifa_books/modules/books/models/author.dart';
 import 'package:bmagrifa_books/modules/books/models/book.dart';
+import 'package:bmagrifa_books/utils/controllers/hamburger_controller.dart';
 import 'package:bmagrifa_books/widgets/book_card.dart';
+import 'package:bmagrifa_books/widgets/categories.dart';
 import 'package:bmagrifa_books/widgets/custom_appbar.dart';
 import 'package:bmagrifa_books/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
@@ -126,25 +128,29 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-          child: Column(
-            children: <Widget>[
-              SearchBar(),
-              const SizedBox(
-                height: 20,
-              ),
-              GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  children: books.map((Book book) {
-                    return BookCard(
-                        title: book.title,
-                        coverImage: book.coverImage,
-                        onTap: () {
-                          Get.toNamed<dynamic>('/book_info', arguments: book);
-                        });
-                  }).toList()),
-            ],
+          child: GetBuilder<HamburgerController>(
+            init: HamburgerController(),
+            builder: (HamburgerController s) => Column(
+              children: <Widget>[
+                SearchBar(),
+                const SizedBox(
+                  height: 20,
+                ),
+                if (!s.isActive) GridView.count(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        crossAxisCount: 2,
+                        children: books.map((Book book) {
+                          return BookCard(
+                              title: book.title,
+                              coverImage: book.coverImage,
+                              onTap: () {
+                                Get.toNamed<dynamic>('/book_info',
+                                    arguments: book);
+                              });
+                        }).toList()) else Categories()
+              ],
+            ),
           ),
         ),
       ),
