@@ -123,27 +123,29 @@ class Home extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: CustomAppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-        child: Column(
-          children: <Widget>[
-            SearchBar(),
-            const SizedBox(
-              height: 20,
-            ),
-            GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                children: books.map((Book book) {
-                  return BookCard(
-                      title: book.title,
-                      coverImage: book.coverImage,
-                      onTap: () {
-                        Get.toNamed<dynamic>('/book_info', arguments: book);
-                      });
-                }).toList()),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+          child: Column(
+            children: <Widget>[
+              SearchBar(),
+              const SizedBox(
+                height: 20,
+              ),
+              GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  children: books.map((Book book) {
+                    return BookCard(
+                        title: book.title,
+                        coverImage: book.coverImage,
+                        onTap: () {
+                          Get.toNamed<dynamic>('/book_info', arguments: book);
+                        });
+                  }).toList()),
+            ],
+          ),
         ),
       ),
     );
