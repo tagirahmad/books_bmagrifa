@@ -7,13 +7,13 @@ import 'package:touchable_opacity/touchable_opacity.dart';
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final isActive = false.obs;
+    final RxBool isActive = false.obs;
     return Container(
       height: 50.0,
       child: Row(
         children: <Widget>[
           Expanded(flex: 4, child: Search()),
-          SizedBox(
+          const SizedBox(
             width: 20.0,
           ),
           Expanded(

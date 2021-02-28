@@ -10,13 +10,13 @@ class _StartupPageState extends State<StartupPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Text(
+    const Text(
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
+    const Text(
       'Index 2: School',
       style: optionStyle,
     ),
@@ -32,7 +32,7 @@ class _StartupPageState extends State<StartupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF2E2E2E),
+        backgroundColor: const Color(0xFF2E2E2E),
         unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class HamburgerHelper {
   static Widget toggle(bool isActive) {
     if (!isActive) {
-      return Hamburger(
+      return const Hamburger(
         bgColor: Color(0xFFEFEFEF),
         icon: Icons.menu,
         iconColor: Colors.black,
       );
     } else {
-      return Hamburger(
+      return const Hamburger(
         bgColor: Color(0xFFFF7026),
         icon: Icons.close,
         iconColor: Colors.white,

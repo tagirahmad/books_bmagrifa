@@ -12,10 +12,11 @@ class Hamburger extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: this.bgColor, borderRadius: BorderRadius.circular(10.0)),
+            color: bgColor, borderRadius: BorderRadius.circular(10.0)),
         child: Icon(
-          this.icon,
-          color: this.iconColor,
+          icon,
+          color: iconColor,
+          size: 30.0,
         ));
   }
 }

@@ -10,13 +10,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       actionsIconTheme:
-          IconThemeData(size: 30.0, color: Colors.black, opacity: 10.0),
+          const IconThemeData(size: 30.0, color: Colors.black, opacity: 10.0),
       // actions: [IconButton(icon: Icon(Icons.menu), onPressed: () {})],
       title: Align(
           alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const <Widget>[
               Text(
                 'Библиотека',
                 style: TextStyle(fontSize: 25, color: Colors.black),
