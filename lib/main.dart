@@ -1,4 +1,4 @@
-import 'package:bmagrifa_books/modules/books/screens/book_info.dart';
+import 'package:bmagrifa_books/config/routes/books_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -19,10 +19,7 @@ class MyApp extends StatelessWidget {
           // accentColor: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: const TextTheme()),
-      getPages: <GetPage>[
-        GetPage(name: '/', page: () => StartupPage()),
-        GetPage(name: '/book_info', page: () => BookInfo())
-      ],
+      getPages: books_routes,
       home: StartupPage(),
     );
   }
