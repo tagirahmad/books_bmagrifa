@@ -1,10 +1,10 @@
-import 'package:bmagrifa_books/utils/controllers/hamburger_controller.dart';
+import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Categories extends StatelessWidget {
   final HamburgerController hamburgerController =
-      Get.put(HamburgerController());
+      Get.find<HamburgerController>();
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:bmagrifa_books/utils/controllers/hamburger_controller.dart';
+import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
 import 'package:bmagrifa_books/utils/helpers/hamburger_helper.dart';
 import 'package:bmagrifa_books/widgets/search.dart';
 import 'package:flutter/material.dart';

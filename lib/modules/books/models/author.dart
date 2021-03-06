@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 
+@immutable
 class Author {
-  const Author({@required this.name, @required this.id});
+  const Author({@required this.name});
 
   final String name;
-  final int id;
 }
