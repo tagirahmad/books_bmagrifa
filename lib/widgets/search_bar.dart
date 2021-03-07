@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+import 'package:touchable_opacity/touchable_opacity.dart';
+
+// Project imports:
 import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
 import 'package:bmagrifa_books/utils/helpers/hamburger_helper.dart';
 import 'package:bmagrifa_books/widgets/search.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:touchable_opacity/touchable_opacity.dart';
 
 class SearchBar extends StatelessWidget {
   final HamburgerController hamburgerController = Get.put(HamburgerController());

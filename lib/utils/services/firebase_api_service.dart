@@ -1,7 +1,10 @@
+// Package imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Project imports:
 import 'package:bmagrifa_books/modules/books/entities/book_entity.dart';
 import 'package:bmagrifa_books/modules/books/models/book.dart';
 import 'package:bmagrifa_books/modules/books/repositories/books_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseApiService implements BooksRepository {
   final CollectionReference booksCollection = FirebaseFirestore.instance.collection('books');

@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:meta/meta.dart';
+
+// Project imports:
 import 'package:bmagrifa_books/modules/books/entities/book_entity.dart';
 import 'package:bmagrifa_books/modules/books/models/author.dart';
-import 'package:meta/meta.dart';
 
 @immutable
 class Book {

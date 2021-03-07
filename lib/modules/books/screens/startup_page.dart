@@ -1,5 +1,8 @@
-import 'package:bmagrifa_books/modules/books/screens/home.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:bmagrifa_books/modules/books/screens/home.dart';
 
 class StartupPage extends StatefulWidget {
   @override

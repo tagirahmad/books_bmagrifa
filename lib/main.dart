@@ -1,10 +1,13 @@
-import 'package:bmagrifa_books/config/routes/books_routes.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+// Project imports:
+import 'package:bmagrifa_books/config/routes/books_routes.dart';
 import 'modules/books/screens/startup_page.dart';
 
 void main() {

@@ -1,10 +1,15 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:bmagrifa_books/modules/books/controllers/books_controller.dart';
 import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
 import 'package:bmagrifa_books/modules/books/models/book.dart';
 import 'package:bmagrifa_books/widgets/book_card.dart';
 import 'package:bmagrifa_books/widgets/categories.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BooksOrCategoriesHelper {
   static Widget showBooksOrCategories(HamburgerController h) {
