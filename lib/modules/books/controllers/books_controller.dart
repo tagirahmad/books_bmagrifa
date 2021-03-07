@@ -15,7 +15,21 @@ class BooksController extends GetxController with StateMixin<List<Book>> {
 
   @override
   void onInit() {
+    // Experimental
+    ever(_books, _checkStatus);
+    //
     getBooks();
+    _books.assignAll(_books);
     super.onInit();
   }
+
+  // Experimental
+  void _checkStatus(List<Book> value) {
+    if (value.isNotEmpty) {
+      RxStatus.success();
+    } else if (value.isEmpty) {
+      RxStatus.loading();
+    }
+  }
+  //
 }
