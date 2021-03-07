@@ -37,7 +37,7 @@ class BooksOrCategoriesHelper {
                         });
                   }).toList());
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           });
     } else
