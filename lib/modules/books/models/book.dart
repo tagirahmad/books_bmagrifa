@@ -1,6 +1,11 @@
-import 'package:bmagrifa_books/modules/books/models/author.dart';
+// Package imports:
 import 'package:meta/meta.dart';
 
+// Project imports:
+import 'package:bmagrifa_books/modules/books/entities/book_entity.dart';
+import 'package:bmagrifa_books/modules/books/models/author.dart';
+
+@immutable
 class Book {
   const Book(
       {@required this.title,
@@ -12,4 +17,13 @@ class Book {
   final String description;
   final Author author;
   final String coverImage;
+
+  static Book fromEntity(BookEntity entity) {
+    return Book(
+        title: entity.title ?? 'Book title',
+        description: entity.description ?? 'Book description',
+        coverImage: entity.coverImage ?? 'https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png',
+        author:
+            Author(name: entity.author) ?? const Author(name: 'Author name'));
+  }
 }
