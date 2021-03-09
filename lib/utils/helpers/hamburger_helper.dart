@@ -1,5 +1,8 @@
-import 'package:bmagrifa_books/widgets/hamburger.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:bmagrifa_books/widgets/hamburger.dart';
 
 class HamburgerHelper {
   static Widget toggle(bool isActive) {

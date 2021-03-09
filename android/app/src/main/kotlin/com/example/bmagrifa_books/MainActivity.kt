@@ -1,4 +1,4 @@
-package com.example.bmagrifa_books
+package com.baytalmagrifa.app
 
 import io.flutter.embedding.android.FlutterActivity
 
