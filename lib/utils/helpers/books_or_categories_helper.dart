@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,32 +15,64 @@ import 'package:bmagrifa_books/widgets/categories.dart';
 class BooksOrCategoriesHelper {
   static Widget showBooksOrCategories(HamburgerController h) {
     if (!h.isActive) {
-      return GetX<BooksController>(
-          init: Get.put<BooksController>(BooksController()),
-          builder: (BooksController b) {
-            if (b != null && b.books.isNotEmpty) {
-              return GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  children: b.books.map((Book book) {
-                    return BookCard(
-                        title: book.title,
-                        coverImage: book.coverImage,
-                        onTap: () {
-                          Get.toNamed<dynamic>('/book_info',
-                              arguments: Book(
-                                description: book.description,
-                                title: book.title,
-                                author: book.author,
-                                coverImage: book.coverImage,
-                              ));
-                        });
-                  }).toList());
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          });
+      final BooksController _booksController = Get.find<BooksController>();
+      return _booksController.obx((List<Book> books) {
+        // if (books != null && books.isNotEmpty) {
+        return GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            children: books.map((Book book) {
+              return BookCard(
+                  title: book.title,
+                  coverImage: book.coverImage,
+                  onTap: () {
+                    Get.toNamed<dynamic>('/book_info',
+                        arguments: Book(
+                          description: book.description,
+                          title: book.title,
+                          author: book.author,
+                          coverImage: book.coverImage,
+                        ));
+                  });
+            }).toList());
+      },
+          onEmpty: const Center(
+            child: Text('Книг пока нет'),
+          ),
+          onError: (String error) => Center(
+                child: Text(error),
+              ),
+          onLoading: const Center(child: Text('LOADING')));
+
+
+      // return GetX<BooksController>(
+      //     init: Get.put<BooksController>(BooksController()),
+      //     builder: (BooksController b) {
+      //       if (b != null && b.books.isNotEmpty) {
+      //         return GridView.count(
+      //             shrinkWrap: true,
+      //             physics: const NeverScrollableScrollPhysics(),
+      //             crossAxisCount: 2,
+      //             children: b.books.map((Book book) {
+      //               return BookCard(
+      //                   title: book.title,
+      //                   coverImage: book.coverImage,
+      //                   onTap: () {
+      //                     Get.toNamed<dynamic>('/book_info',
+      //                         arguments: Book(
+      //                           description: book.description,
+      //                           title: book.title,
+      //                           author: book.author,
+      //                           coverImage: book.coverImage,
+      //                         ));
+      //                   });
+      //             }).toList());
+      //       } else {
+      //         return const Center(child: CircularProgressIndicator());
+      //       }
+      //     });
+
     } else
       return Categories();
   }
