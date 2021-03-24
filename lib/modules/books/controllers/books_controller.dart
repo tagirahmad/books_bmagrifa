@@ -19,18 +19,18 @@ class BooksController extends GetxController with StateMixin<List<Book>> {
     //
     change(null, status: RxStatus.loading());
 
-    // final Stream<List<Book>> books =
-    //     _firebaseApiService.getBooks().handleError((Object e) {
-    //   print(e);
-    //   change(null, status: RxStatus.error(e.toString()));
-    // });
-
     _books.bindStream(_firebaseApiService.getBooks().handleError((Object e) {
       print(e);
       change(null, status: RxStatus.error(e.toString()));
     }));
 
     change(_books, status: RxStatus.success());
+
+    // final Stream<List<Book>> books =
+    //     _firebaseApiService.getBooks().handleError((Object e) {
+    //   print(e);
+    //   change(null, status: RxStatus.error(e.toString()));
+    // });
 
     // if (_books.isNotEmpty) {
     //   change(_books, status: RxStatus.empty());
@@ -42,8 +42,6 @@ class BooksController extends GetxController with StateMixin<List<Book>> {
     // } else if (_books.toList().isEmpty) {
     //   change(null, status: RxStatus.empty());
     // }
-
-    
 
     // _books.bindStream(books);
 

@@ -34,6 +34,7 @@ dependencies:
   firebase_core: ^1.0.0
   cloud_firestore: ^1.0.0
   equatable: ^1.2.5
+  bottom_sheet: ^0.0.1-dev.8
 
 
 dev_dependencies:

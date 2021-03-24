@@ -43,7 +43,7 @@ class BooksOrCategoriesHelper {
           onError: (String error) => Center(
                 child: Text(error),
               ),
-          onLoading: const Center(child: Text('LOADING')));
+          onLoading: const Center(child: Text('Идет загрузка книг')));
 
 
       // return GetX<BooksController>(
