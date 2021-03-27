@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:bmagrifa_books/modules/books/controllers/book_content_controller.dart';
-import 'package:bmagrifa_books/modules/books/controllers/books_controller.dart';
 import 'package:bmagrifa_books/widgets/custom_outlined_button.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookInfo extends StatelessWidget {
+  final BookContentController bookContentController =
+      Get.put(BookContentController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,7 +160,7 @@ class BookInfo extends StatelessWidget {
                             ),
                             transformAlignment: Alignment.centerRight,
                             child: GetBuilder<BookContentController>(
-                              init: BookContentController(),
+                              // init: BookContentController(),
                               builder: (BookContentController
                                   bookContentController) {
                                 return Container(
@@ -182,6 +183,7 @@ class BookInfo extends StatelessWidget {
                                           bookContentController
                                               .booksContentActive
                                               .toggle();
+                                          bookContentController.update();
                                         }
                                       },
                                       active: bookContentController
@@ -208,6 +210,7 @@ class BookInfo extends StatelessWidget {
                                           bookContentController
                                               .booksDescriptionActive
                                               .toggle();
+                                          bookContentController.update();
                                         }
                                       },
                                       active: bookContentController
@@ -225,25 +228,51 @@ class BookInfo extends StatelessWidget {
                           );
                         },
                         builder: (BuildContext context, double offset) {
-                          return SliverChildListDelegate([1, 2, 3, 4]
-                              .map((e) => ListTile(
-                                    title: Text(e.toString()),
-                                  ))
-                              .toList());
+                          return SliverChildListDelegate([
+                            GetX<BookContentController>(
+                              builder: (controller) {
+                                if (controller.booksContentActive.value ==
+                                    true) {
+                                  return Column(
+                                    children: [
+                                      ...[
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16,
+                                        17
+                                      ]
+                                          .map((e) => ListTile(
+                                                title: Text(
+                                                  e.toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ))
+                                          .toList()
+                                    ],
+                                  );
+                                } else {
+                                  return Text('text');
+                                }
+                              },
+                            )
+                          ]);
                         },
                         anchors: <double>[.3, 1.0],
                       );
-
-                      // showFlexibleBottomSheet<void>(
-                      //   minHeight: 0,
-                      //   initHeight: 0.5,
-                      //   maxHeight: 1,
-                      //   useRootNavigator: true,
-                      //   context: context,
-                      //   isExpand: true,
-                      //   builder: _buildBottomSheet,
-                      //   anchors: [.3, 0.5, .8, 1.0],
-                      // );
                     }),
               ],
             ),
@@ -257,28 +286,6 @@ class BookInfo extends StatelessWidget {
           ],
         ),
       )),
-      // bottomSheet: Container(
-      //   height: MediaQuery.of(context).size.height,
-      //   child: Text('text text text'),
-      // ),
-    );
-  }
-
-  Widget _buildBottomSheet(
-    BuildContext context,
-    ScrollController scrollController,
-    double bottomSheetOffset,
-  ) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: TabBarView(
-          children: [
-            Icon(Icons.directions_car),
-            Icon(Icons.directions_transit),
-          ],
-        ),
-      ),
     );
   }
 }

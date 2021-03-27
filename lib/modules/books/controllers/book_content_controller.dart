@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 enum BookInfoEnum { content, description }
 
 class BookContentController extends GetxController {
+  static BookContentController get to => Get.find();
   final RxBool booksContentActive = false.obs;
   final RxBool booksDescriptionActive = true.obs;
 
