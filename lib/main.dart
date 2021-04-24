@@ -8,7 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 // Project imports:
 import 'package:bmagrifa_books/config/routes/books_routes.dart';
-import 'modules/books/screens/startup_page.dart';
+import 'modules/screens/startup_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

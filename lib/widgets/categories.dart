@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
+import 'package:bmagrifa_books/modules/controllers/hamburger_controller.dart';
 
 class Categories extends StatelessWidget {
   final HamburgerController hamburgerController =

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:bmagrifa_books/modules/books/controllers/books_controller.dart';
-import 'package:bmagrifa_books/modules/books/controllers/hamburger_controller.dart';
+import 'package:bmagrifa_books/modules/controllers/books_controller.dart';
+import 'package:bmagrifa_books/modules/controllers/hamburger_controller.dart';
 import 'package:bmagrifa_books/utils/helpers/books_or_categories_helper.dart';
 import 'package:bmagrifa_books/widgets/custom_appbar.dart';
 import 'package:bmagrifa_books/widgets/search_bar.dart';

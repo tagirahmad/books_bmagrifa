@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 
 // Project imports:
-import 'package:bmagrifa_books/modules/books/models/book.dart';
+import 'package:bmagrifa_books/modules/models/book.dart';
 import 'package:bmagrifa_books/utils/services/firebase_api_service.dart';
 
 class BooksController extends GetxController with StateMixin<List<Book>> {
