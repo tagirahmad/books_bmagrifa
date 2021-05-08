@@ -16,7 +16,7 @@ Future<Uint8List> _loadFileBytes(String url) async {
   return bytes;
 }
 
-Future<String> loadFile({String url, String path}) async {
+Future<String> loadFile({String url: '', String path: ''}) async {
   print('file loading started');
   final bytes = await _loadFileBytes(url);
 
@@ -76,8 +76,7 @@ Future<bool> isInternetConnectionOk() async {
     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
       print('connected');
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   } on SocketException catch (_) {
