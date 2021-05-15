@@ -1,7 +1,7 @@
 import 'package:bmagrifa_books/app/data/base_api.dart';
+import 'package:bmagrifa_books/app/models/books_model.dart';
 import 'package:get/get.dart';
 
-import '../books_model.dart';
 
 class BookInfoController extends GetxController with StateMixin<List<Book>> {
   BookInfoController({required this.api});

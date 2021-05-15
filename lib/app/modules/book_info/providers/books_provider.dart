@@ -1,6 +1,5 @@
+import 'package:bmagrifa_books/app/models/books_model.dart';
 import 'package:get/get.dart';
-
-import '../books_model.dart';
 
 class BooksProvider extends GetConnect {
   @override

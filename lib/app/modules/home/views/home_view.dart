@@ -1,5 +1,5 @@
 import 'package:bmagrifa_books/app/data/firebase_api.dart';
-import 'package:bmagrifa_books/app/modules/book_info/books_model.dart';
+import 'package:bmagrifa_books/app/models/books_model.dart';
 import 'package:bmagrifa_books/app/modules/book_info/controllers/book_info_controller.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/book_card.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/categories.dart';
