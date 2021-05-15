@@ -17,25 +17,28 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            snap: true,
-            floating: true,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SearchBar(),
+      body: GestureDetector(
+        onTap: controller.searchFocusNode.unfocus,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              snap: true,
+              floating: true,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: SearchBar(),
+              ),
+              backgroundColor: Colors.white,
             ),
-            backgroundColor: Colors.white,
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-              child: Obx(() => showBooksOrCategories(controller)),
-            ),
-          )
-        ],
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 16.0),
+                child: Obx(() => showBooksOrCategories(controller)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -59,6 +62,7 @@ class HomeView extends GetView<HomeController> {
                   title: book.title,
                   coverImage: book.coverImage,
                   onTap: () {
+                    h.searchFocusNode.unfocus();
                     Get.toNamed<dynamic>(
                       Routes.BOOK_INFO,
                       arguments: Book(

@@ -22,6 +22,8 @@ class SearchBar extends StatelessWidget {
           Expanded(
             flex: 4,
             child: Search(
+              textEditingController: homeController.searchEditingController,
+              focusNode: homeController.searchFocusNode,
               hintText: 'Искать книгу',
               fillColor: AppColors.WHITE,
               prefixIconColor: AppColors.GREY,
