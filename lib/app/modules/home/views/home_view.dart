@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
             child: SingleChildScrollView(
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-              child: showBooksOrCategories(controller),
+              child: Obx(() => showBooksOrCategories(controller)),
             ),
           )
         ],
@@ -42,46 +42,53 @@ class HomeView extends GetView<HomeController> {
 
   static Widget showBooksOrCategories(HomeController h) {
     if (!h.hamburgerIsActive.value) {
-      final BookInfoController _booksController =
-          Get.put<BookInfoController>(BookInfoController(api: FirebaseApi()));
-      return _booksController.obx((List<Book>? books) {
-        return GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          children: books!.map(
-            (Book book) {
-              return BookCard(
-                title: book.title,
-                coverImage: book.coverImage,
-                onTap: () {
-                  Get.toNamed<dynamic>(
-                    Routes.BOOK_INFO,
-                    arguments: Book(
-                      description: book.description,
-                      title: book.title,
-                      author: book.author,
-                      coverImage: book.coverImage,
-                      categories: book.categories,
-                      hidden: book.hidden,
-                      isNew: book.isNew,
-                      url: book.url,
-                      version: book.version,
-                    ),
-                  );
-                },
-              );
-            },
-          ).toList(),
-        );
-      },
-          onEmpty: const Center(
-            child: Text('Книг пока нет'),
-          ),
-          onError: (String? error) => Center(
-                child: Text(error ?? 'Ошибка'),
-              ),
-          onLoading: const Center(child: Text('Идет загрузка книг')));
+      final BookInfoController _booksController = Get.put<BookInfoController>(
+        BookInfoController(
+          api: FirebaseApi(),
+        ),
+      );
+      return _booksController.obx(
+        (List<Book>? books) {
+          return GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            children: books!.map(
+              (Book book) {
+                return BookCard(
+                  title: book.title,
+                  coverImage: book.coverImage,
+                  onTap: () {
+                    Get.toNamed<dynamic>(
+                      Routes.BOOK_INFO,
+                      arguments: Book(
+                        description: book.description,
+                        title: book.title,
+                        author: book.author,
+                        coverImage: book.coverImage,
+                        categories: book.categories,
+                        hidden: book.hidden,
+                        isNew: book.isNew,
+                        url: book.url,
+                        version: book.version,
+                      ),
+                    );
+                  },
+                );
+              },
+            ).toList(),
+          );
+        },
+        onEmpty: const Center(
+          child: Text('Книг пока нет'),
+        ),
+        onError: (String? error) => Center(
+          child: Text(error ?? 'Ошибка'),
+        ),
+        onLoading: const Center(
+          child: Text('Идет загрузка книг'),
+        ),
+      );
 
       // return GetX<BooksController>(
       //     init: Get.put<BooksController>(BooksController()),
