@@ -7,6 +7,7 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../controllers/book_info_controller.dart';
 
@@ -48,14 +49,19 @@ class BookInfoView extends GetView<BookInfoController> {
                       height: Dimensions.COVER_IMAGE_SIZE,
                     ),
                     const SizedBox(
-                      height: Dimensions.ITEM_INDENT,
+                      height: Dimensions.ITEM_INDENT * 2,
                     ),
-                    Text(
-                      Get.arguments.description as String,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: Dimensions.FONT_SIZE,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: LinearPercentIndicator(
+                        lineHeight: 10.0,
+                        percent: 0.1,
+                        backgroundColor: Colors.grey,
+                        progressColor: AppColors.ORANGE,
                       ),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.ITEM_INDENT * 2,
                     ),
                     Text(
                       Get.arguments.title as String,
