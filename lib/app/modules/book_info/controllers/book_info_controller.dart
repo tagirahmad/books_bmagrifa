@@ -1,9 +1,11 @@
 import 'package:bmagrifa_books/app/models/books_model.dart';
 import 'package:get/get.dart';
 
-class BookInfoController extends GetxController with StateMixin<List<Book>> {
+class BookInfoController extends GetxController {
   Rx<bool> booksContentActive = false.obs;
   Rx<bool> booksDescriptionActive = true.obs;
+  late Book bookArgument;
+  late Book getArgument;
 
   @override
   void onInit() async {
@@ -12,6 +14,8 @@ class BookInfoController extends GetxController with StateMixin<List<Book>> {
 
   @override
   void onReady() {
+    getArgument = Get.arguments;
+    print(getArgument);
     super.onReady();
   }
 
