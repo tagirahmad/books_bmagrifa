@@ -1,6 +1,4 @@
-import 'package:bmagrifa_books/app/data/firebase_api.dart';
 import 'package:bmagrifa_books/app/models/books_model.dart';
-import 'package:bmagrifa_books/app/modules/book_info/controllers/book_info_controller.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/book_card.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/categories.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/home_app_bar.dart';
@@ -45,12 +43,7 @@ class HomeView extends GetView<HomeController> {
 
   static Widget showBooksOrCategories(HomeController h) {
     if (!h.hamburgerIsActive.value) {
-      final BookInfoController _booksController = Get.put<BookInfoController>(
-        BookInfoController(
-          api: FirebaseApi(),
-        ),
-      );
-      return _booksController.obx(
+      return h.obx(
         (List<Book>? books) {
           return GridView.count(
             shrinkWrap: true,

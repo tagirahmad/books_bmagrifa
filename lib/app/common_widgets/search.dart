@@ -10,6 +10,7 @@ class Search extends TextField {
   }) : super(
           controller: textEditingController,
           focusNode: focusNode,
+          autofocus: false,
           decoration: InputDecoration(
             fillColor: fillColor ?? null,
             filled: true,
