@@ -50,8 +50,6 @@ class Books {
       books = <Book>[];
       print("runtime type of ${snapshot.value['books'][0].runtimeType}");
       snapshot.value['books'].forEach((dynamic v) {
-        // print(v);
-        // print('------');
         books.add(Book.fromJson(Map<String, dynamic>.from(v)));
       });
     }

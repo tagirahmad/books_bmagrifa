@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:bmagrifa_books/app/common_widgets/search.dart';
 import 'package:bmagrifa_books/app/constants/app_colors.dart';
 import 'package:bmagrifa_books/app/constants/dimensions.dart';
@@ -6,7 +5,6 @@ import 'package:bmagrifa_books/app/modules/home/controllers/home_controller.dart
 import 'package:bmagrifa_books/app/modules/home/widgets/hamburger.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:get/get.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 

@@ -1,4 +1,3 @@
-import 'package:bmagrifa_books/app/common_widgets/custom_outlined_button.dart';
 import 'package:bmagrifa_books/app/constants/app_colors.dart';
 import 'package:bmagrifa_books/app/constants/dimensions.dart';
 import 'package:bmagrifa_books/app/modules/book_info/widgets/content_button_left.dart';
@@ -109,7 +108,6 @@ class BookInfoView extends GetView<BookInfoController> {
   }
 
   void _showBottomSheet(BuildContext context) {
-    // bookController.bookArgument = Get.arguments;
     showStickyFlexibleBottomSheet<void>(
       minHeight: 0,
       initHeight: 0.5,
@@ -211,7 +209,6 @@ class BookInfoView extends GetView<BookInfoController> {
                     horizontal: Dimensions.SIDE_INDENT,
                   ),
                   child: Text(controller.bookArgument.description),
-                  // child: Text(Get.arguments.description as String),
                 );
               }
             },
