@@ -12,8 +12,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../controllers/book_info_controller.dart';
 
 class BookInfoView extends GetView<BookInfoController> {
-  final bookController = Get.find<BookInfoController>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +43,7 @@ class BookInfoView extends GetView<BookInfoController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.network(
-                      Get.arguments.coverImage as String,
+                      controller.bookArgument.coverImage,
                       height: Dimensions.COVER_IMAGE_SIZE,
                     ),
                     const SizedBox(
@@ -64,7 +62,7 @@ class BookInfoView extends GetView<BookInfoController> {
                       height: Dimensions.ITEM_INDENT * 2,
                     ),
                     Text(
-                      Get.arguments.title as String,
+                      controller.bookArgument.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: Dimensions.FONT_SIZE,
@@ -75,7 +73,7 @@ class BookInfoView extends GetView<BookInfoController> {
                       height: Dimensions.ITEM_INDENT,
                     ),
                     Text(
-                      Get.arguments.author as String,
+                      controller.bookArgument.author,
                       style: const TextStyle(
                         color: AppColors.ORANGE,
                         fontSize: Dimensions.FONT_SIZE - 7,
@@ -212,8 +210,8 @@ class BookInfoView extends GetView<BookInfoController> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: Dimensions.SIDE_INDENT,
                   ),
-                  // child: Text(controller.bookArgument.description),
-                  child: Text(Get.arguments.description as String),
+                  child: Text(controller.bookArgument.description),
+                  // child: Text(Get.arguments.description as String),
                 );
               }
             },

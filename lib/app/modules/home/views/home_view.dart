@@ -1,4 +1,5 @@
 import 'package:bmagrifa_books/app/models/books_model.dart';
+import 'package:bmagrifa_books/app/modules/book_info/controllers/book_info_controller.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/book_card.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/categories.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/home_app_bar.dart';
@@ -11,6 +12,8 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  final bookController = Get.put(BookInfoController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +44,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  static Widget showBooksOrCategories(HomeController h) {
+  Widget showBooksOrCategories(HomeController h) {
     if (!h.hamburgerIsActive.value) {
       return h.obx(
         (List<Book>? books) {
@@ -55,21 +58,23 @@ class HomeView extends GetView<HomeController> {
                   title: book.title,
                   coverImage: book.coverImage,
                   onTap: () {
-                    h.searchFocusNode.unfocus();
-                    Get.toNamed<dynamic>(
-                      Routes.BOOK_INFO,
-                      arguments: Book(
-                        description: book.description,
-                        title: book.title,
-                        author: book.author,
-                        coverImage: book.coverImage,
-                        categories: book.categories,
-                        hidden: book.hidden,
-                        isNew: book.isNew,
-                        url: book.url,
-                        version: book.version,
-                      ),
+                    final b = Book(
+                      description: book.description,
+                      title: book.title,
+                      author: book.author,
+                      coverImage: book.coverImage,
+                      categories: book.categories,
+                      hidden: book.hidden,
+                      isNew: book.isNew,
+                      url: book.url,
+                      version: book.version,
                     );
+                    h.searchFocusNode.unfocus();
+                    Get.toNamed<dynamic>(Routes.BOOK_INFO);
+
+                    /// Explicitly pass book object into next page
+                    /// by passing it into [BookInfoController]
+                    bookController.bookArgument = b;
                   },
                 );
               },
