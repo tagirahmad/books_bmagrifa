@@ -5,7 +5,12 @@ class Search extends TextField {
     required String hintText,
     Color? fillColor,
     Color? prefixIconColor,
+    TextEditingController? textEditingController,
+    FocusNode? focusNode,
   }) : super(
+          controller: textEditingController,
+          focusNode: focusNode,
+          autofocus: false,
           decoration: InputDecoration(
             fillColor: fillColor ?? null,
             filled: true,

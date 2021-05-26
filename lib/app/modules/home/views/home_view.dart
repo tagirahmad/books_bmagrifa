@@ -1,5 +1,4 @@
-import 'package:bmagrifa_books/app/data/firebase_api.dart';
-import 'package:bmagrifa_books/app/modules/book_info/books_model.dart';
+import 'package:bmagrifa_books/app/models/books_model.dart';
 import 'package:bmagrifa_books/app/modules/book_info/controllers/book_info_controller.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/book_card.dart';
 import 'package:bmagrifa_books/app/modules/home/widgets/categories.dart';
@@ -13,51 +12,53 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  final bookController = Get.put(BookInfoController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            snap: true,
-            floating: true,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SearchBar(),
+      body: GestureDetector(
+        onTap: controller.searchFocusNode.unfocus,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              snap: true,
+              floating: true,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: SearchBar(),
+              ),
+              backgroundColor: Colors.white,
             ),
-            backgroundColor: Colors.white,
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-              child: showBooksOrCategories(controller),
-            ),
-          )
-        ],
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 16.0),
+                child: Obx(() => showBooksOrCategories(controller)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  static Widget showBooksOrCategories(HomeController h) {
+  Widget showBooksOrCategories(HomeController h) {
     if (!h.hamburgerIsActive.value) {
-      final BookInfoController _booksController =
-          Get.put<BookInfoController>(BookInfoController(api: FirebaseApi()));
-      return _booksController.obx((List<Book>? books) {
-        return GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          children: books!.map(
-            (Book book) {
-              return BookCard(
-                title: book.title,
-                coverImage: book.coverImage,
-                onTap: () {
-                  Get.toNamed<dynamic>(
-                    Routes.BOOK_INFO,
-                    arguments: Book(
+      return h.obx(
+        (List<Book>? books) {
+          return GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            children: books!.map(
+              (Book book) {
+                return BookCard(
+                  title: book.title,
+                  coverImage: book.coverImage,
+                  onTap: () {
+                    final b = Book(
                       description: book.description,
                       title: book.title,
                       author: book.author,
@@ -67,49 +68,29 @@ class HomeView extends GetView<HomeController> {
                       isNew: book.isNew,
                       url: book.url,
                       version: book.version,
-                    ),
-                  );
-                },
-              );
-            },
-          ).toList(),
-        );
-      },
-          onEmpty: const Center(
-            child: Text('Книг пока нет'),
-          ),
-          onError: (String? error) => Center(
-                child: Text(error ?? 'Ошибка'),
-              ),
-          onLoading: const Center(child: Text('Идет загрузка книг')));
+                    );
+                    h.searchFocusNode.unfocus();
+                    Get.toNamed<dynamic>(Routes.BOOK_INFO);
 
-      // return GetX<BooksController>(
-      //     init: Get.put<BooksController>(BooksController()),
-      //     builder: (BooksController b) {
-      //       if (b != null && b.books.isNotEmpty) {
-      //         return GridView.count(
-      //             shrinkWrap: true,
-      //             physics: const NeverScrollableScrollPhysics(),
-      //             crossAxisCount: 2,
-      //             children: b.books.map((Book book) {
-      //               return BookCard(
-      //                   title: book.title,
-      //                   coverImage: book.coverImage,
-      //                   onTap: () {
-      //                     Get.toNamed<dynamic>('/book_info',
-      //                         arguments: Book(
-      //                           description: book.description,
-      //                           title: book.title,
-      //                           author: book.author,
-      //                           coverImage: book.coverImage,
-      //                         ));
-      //                   });
-      //             }).toList());
-      //       } else {
-      //         return const Center(child: CircularProgressIndicator());
-      //       }
-      //     });
-
+                    /// Explicitly pass book object into next page
+                    /// by passing it into [BookInfoController]
+                    bookController.bookArgument = b;
+                  },
+                );
+              },
+            ).toList(),
+          );
+        },
+        onEmpty: const Center(
+          child: Text('Книг пока нет'),
+        ),
+        onError: (String? error) => Center(
+          child: Text(error ?? 'Ошибка'),
+        ),
+        onLoading: const Center(
+          child: Text('Идет загрузка книг'),
+        ),
+      );
     } else
       return Categories();
   }

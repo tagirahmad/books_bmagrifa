@@ -1,11 +1,6 @@
-// Flutter imports:
 import 'package:bmagrifa_books/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:get/get.dart';
-
-// Project imports:
 
 class Categories extends StatelessWidget {
   final HomeController homeController = Get.find<HomeController>();
